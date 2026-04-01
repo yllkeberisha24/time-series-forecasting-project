@@ -105,16 +105,46 @@ git clone https://github.com/yllkeberisha24/time-series-forecasting-project
 cd time-series-forecasting-project
 ```
 
-### 2. Install dependencies
+### 2. (Recommended) Create a virtual environment
+Linux / macOS:
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+Windows (PowerShell):
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+### 3. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Download the dataset
-Download `city_temperature.csv` from Kaggle and place it in the 
-`data/` folder.
+### 4. Obtain the dataset
+The notebook expects the file `data/city_temperature.csv`. This repository does not track large data files.
 
-### 4. Run the notebook
+- Option A — Kaggle (recommended):
+  1. Sign in to Kaggle and go to https://www.kaggle.com/datasets/sudalairajkumar/daily-temperature-of-major-cities
+  2. Using the Kaggle CLI (after creating an API token), run:
+  ```bash
+  kaggle datasets download -d sudalairajkumar/daily-temperature-of-major-cities -p data --unzip
+  ```
+
+- Option B — Direct download via environment variable:
+  If you have a direct CSV URL, set `CITY_TEMPERATURE_URL` and run:
+  ```bash
+  export CITY_TEMPERATURE_URL="https://example.com/path/to/city_temperature.csv"
+  mkdir -p data
+  curl -L "$CITY_TEMPERATURE_URL" -o data/city_temperature.csv
+  ```
+  On Windows PowerShell, use `curl` or `Invoke-WebRequest` accordingly.
+
+Note: `data/city_temperature.csv` is listed in `.gitignore` and should NOT be committed to the repository.
+
+### 5. Run the notebook
+Start Jupyter and open the main notebook:
 ```bash
 jupyter notebook notebooks/vienna_temperature_time_series_analysis.ipynb
 ```

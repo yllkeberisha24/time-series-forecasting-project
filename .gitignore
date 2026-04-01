@@ -1,3 +1,11 @@
 # Ignore local dataset files (large files)
 data/city_temperature.csv
 notebooks/data/city_temperature.csv
+
+# Ignore exported figures except the ones we keep in the repo
+images/*
+!images/fig3.png
+!images/fig10.png
+!images/fig11.png
+!images/prophet-component-decompositions.png
+!images/train-test-split.png

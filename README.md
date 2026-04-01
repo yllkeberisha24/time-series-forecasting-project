@@ -91,6 +91,15 @@ rolling means, and calendar features (month, quarter, year).
 | **Prophet** | 2.90°F | 3.69°F | 6.16% | 2nd |
 | **XGBoost** | 3.82°F | 5.29°F | 8.19% | 3rd |
 
+### Forecast Comparison
+![Forecast Comparison](images/fig10.png)
+
+### Model Metrics
+![Metrics](images/fig11.png)
+
+### Seasonal Decomposition
+![Decomposition](images/fig3.png)
+
 SARIMA achieves the best performance on this dataset, as expected 
 for a highly regular seasonal series. All three models achieve 
 MAPE below 10%, confirming reliable forecasting accuracy.
@@ -144,9 +153,8 @@ The notebook expects the file `data/city_temperature.csv`. This repository does 
 Note: `data/city_temperature.csv` is listed in `.gitignore` and should NOT be committed to the repository.
 
 ### 5. Run the notebook
-Start Jupyter and open the main notebook:
 ```bash
-jupyter notebook notebooks/vienna_temperature_time_series_analysis.ipynb
+    notebooks/vienna_temperature_time_series_analysis.ipynb
 ```
 
 ---

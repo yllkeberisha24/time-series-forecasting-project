@@ -1,0 +1,3 @@
+# Ignore local dataset files (large files)
+data/city_temperature.csv
+notebooks/data/city_temperature.csv

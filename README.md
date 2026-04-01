@@ -1,3 +1,168 @@
-# time-series-forecasting-project
+# Temperature Forecasting with SARIMA, Prophet & XGBoost
+### Time Series Analysis | Vienna, Austria (1995–2019)
 
-link to download the data: https://www.kaggle.com/datasets/mianbilal12/apple-stock-market-data-19802024?resource=download
+---
+
+## Project Overview
+
+This project applies classical and machine learning time series 
+forecasting methods to predict monthly average temperatures in 
+Vienna, Austria. Using 25 years of daily temperature data, we 
+build and compare three models — SARIMA, Prophet, and XGBoost — 
+evaluating their performance on a 24-month holdout test set 
+(2018–2019).
+
+The project covers the full data science pipeline:
+- Exploratory Data Analysis (EDA)
+- Stationarity testing (ADF, ACF, PACF)
+- Seasonal decomposition
+- Model building and forecasting
+- Model evaluation and comparison
+
+---
+
+## Project Structure
+```
+├── data/
+│   └── city_temperature.csv        # Raw dataset (Kaggle)
+├── notebooks/
+│   └── temperature_forecasting.ipynb  # Main project notebook
+├── images/
+│   └── *.png                       # Exported figures
+├── README.md                       # Project documentation
+└── requirements.txt                # Python dependencies
+```
+
+---
+
+## 📊 Dataset
+
+**Source:** [Daily Temperature of Major Cities — Kaggle](https://www.kaggle.com/datasets/sudalairajkumar/daily-temperature-of-major-cities)
+
+| Property | Details |
+|---|---|
+| City | Vienna, Austria |
+| Period | January 1995 – December 2019 |
+| Frequency | Daily → resampled to Monthly |
+| Target Variable | Average Temperature (°F) |
+| Train Set | 1995–2017 (276 months) |
+| Test Set | 2018–2019 (24 months) |
+
+---
+
+## Methodology
+
+### 1. Exploratory Data Analysis
+- Raw time series visualization with rolling mean and std
+- Seasonal decomposition (additive model)
+- Monthly and seasonal distribution analysis
+- Stationarity testing via ADF test
+- ACF and PACF analysis for model order identification
+
+### 2. Models
+
+#### SARIMA(3,1,0)×(1,1,2,12)
+Classical statistical model. Orders identified automatically 
+using `auto_arima` with AIC as the selection criterion. Applies 
+both regular and seasonal differencing to handle the yearly cycle.
+
+#### Prophet
+Facebook's forecasting model. Handles trend and seasonality 
+through curve fitting with Fourier series. Configured with 
+`seasonality_mode='additive'` based on EDA findings.
+
+#### XGBoost
+Gradient boosting ML model. Forecasts using engineered time 
+features including lag values (lag_1, lag_2, lag_12, lag_24), 
+rolling means, and calendar features (month, quarter, year).
+
+### 3. Evaluation Metrics
+- **MAE** — Mean Absolute Error (°F)
+- **RMSE** — Root Mean Squared Error (°F)  
+- **MAPE** — Mean Absolute Percentage Error (%)
+
+---
+
+## 📈 Results
+
+| Model | MAE | RMSE | MAPE | Rank |
+|---|---|---|---|---|
+| **SARIMA** | 2.53°F | 3.44°F | 5.51% | 1st |
+| **Prophet** | 2.90°F | 3.69°F | 6.16% | 2nd |
+| **XGBoost** | 3.82°F | 5.29°F | 8.19% | 3rd |
+
+SARIMA achieves the best performance on this dataset, as expected 
+for a highly regular seasonal series. All three models achieve 
+MAPE below 10%, confirming reliable forecasting accuracy.
+
+---
+
+## Installation & Usage
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/yourusername/temperature-forecasting.git
+cd temperature-forecasting
+```
+
+### 2. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Download the dataset
+Download `city_temperature.csv` from Kaggle and place it in the 
+`data/` folder.
+
+### 4. Run the notebook
+```bash
+jupyter notebook notebooks/temperature_forecasting.ipynb
+```
+
+---
+
+## Requirements
+
+See `requirements.txt` for full list. Core dependencies:
+
+| Package | Purpose |
+|---|---|
+| pandas | Data manipulation |
+| numpy | Numerical computing |
+| matplotlib / seaborn | Visualization |
+| statsmodels | SARIMA, ADF, decomposition |
+| pmdarima | auto_arima |
+| prophet | Prophet model |
+| xgboost | XGBoost model |
+| scikit-learn | Evaluation metrics |
+
+---
+
+## Key Findings
+
+- Vienna's temperature exhibits **strong, stable yearly seasonality** 
+  with summer peaks ~75°F and winter troughs ~30°F
+- The **2003 European heatwave** is visible as an anomaly in both 
+  the trend and residual components
+- The ADF test detects **stationarity in the mean**, but ACF analysis 
+  reveals seasonal non-stationarity requiring seasonal differencing
+- **Additive decomposition** is appropriate as seasonal amplitude 
+  remains constant regardless of trend level
+- SARIMA outperforms ML-based XGBoost on this regular seasonal 
+  series, highlighting that **classical models remain competitive** 
+  for well-structured time series data
+
+---
+
+## Author
+
+**Yllkë Berisha**  
+Course: Time Series Forecasting 2025/2026
+Institution: Central European University
+Date: April 2026
+
+---
+
+## 📄 License
+
+This project is for academic purposes only.

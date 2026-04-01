@@ -101,8 +101,8 @@ MAPE below 10%, confirming reliable forecasting accuracy.
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/temperature-forecasting.git
-cd temperature-forecasting
+git clone https://github.com/yllkeberisha24/time-series-forecasting-project
+cd time-series-forecasting-project
 ```
 
 ### 2. Install dependencies
@@ -116,7 +116,7 @@ Download `city_temperature.csv` from Kaggle and place it in the
 
 ### 4. Run the notebook
 ```bash
-jupyter notebook notebooks/temperature_forecasting.ipynb
+jupyter notebook notebooks/vienna_temperature_time_series_analysis.ipynb
 ```
 
 ---
@@ -158,6 +158,7 @@ See `requirements.txt` for full list. Core dependencies:
 
 **Yllkë Berisha**  
 Course: Time Series Forecasting 2025/2026
+
 Institution: Central European University
 Date: April 2026
 
